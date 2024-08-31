@@ -9,6 +9,7 @@ from image_to_text import predict_number_plate
 from paddleocr import PaddleOCR
 import os
 import tempfile
+import re
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
@@ -22,7 +23,15 @@ ocr = PaddleOCR(use_angle_cls=True, lang='en')  # Initialize OCR
 
 def log_detection(class_name, x1, y1, x2, y2, conf):
     print(f"Detected {class_name} at [{x1}, {y1}, {x2}, {y2}] with confidence {conf}")
-
+def predict_number_plate(img, ocr):
+    result = ocr.ocr(img, cls=True)
+    result = result[0]
+    texts = [line[1][0] for line in result]
+    scores = [line[1][1] for line in result]
+    if (scores[0]*100) >= 90:
+        return re.sub(r'[^a-zA-Z0-9]', '', texts[0]), scores[0]
+    else:
+        return None, None
 
 def process_frame(img):
     new_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)

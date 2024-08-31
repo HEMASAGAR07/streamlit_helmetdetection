@@ -5,7 +5,7 @@ import cvzone
 import numpy as np
 from PIL import Image
 from ultralytics import YOLO
-from image_to_text import predict_number_plate
+
 from paddleocr import PaddleOCR
 import os
 import tempfile

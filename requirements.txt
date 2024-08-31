@@ -7,4 +7,3 @@ numpy
 Pillow
 ultralytics==8.0.107
 paddleocr
-paddlepaddle

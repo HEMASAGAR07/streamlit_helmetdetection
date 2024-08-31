@@ -1,6 +1,5 @@
 import streamlit as st
 import cv2
-import torch
 import math
 import cvzone
 import numpy as np
@@ -15,7 +14,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 # Load YOLO model
 model = YOLO("best (3).pt")  # Update the path to your best.pt file
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # Use GPU if available
+
 
 classNames = ["number plate", "rider", "with helmet", "without helmet"]
 ocr = PaddleOCR(use_angle_cls=True, lang='en')  # Initialize OCR

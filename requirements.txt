@@ -6,5 +6,5 @@ cvzone
 numpy
 Pillow
 ultralytics==8.0.107
-paddleocr==2.6.1
+paddleocr
 paddlepaddle
